@@ -8,6 +8,7 @@ router.route("/").get((req, res)=>{
         .catch(err=>res.status(400).json("Error: "+err));
 });
 
+//function to insert user data into database
 router.route("/add").post((req, res)=>{
     const fname=req.body.fname;
     const lname=req.body.lname;
@@ -21,18 +22,21 @@ router.route("/add").post((req, res)=>{
         .catch(err => res.status(400).json("Error "+ err))
 });
 
+//function to get user data from database using id
 router.route("/:id").get((req,res)=>{
     User.findById(req.params.id)
         .then(users=>res.json(users))
         .catch(err=>res.status(400).json("Error: "+ err));
 });
 
+//function to delete user data from database using id
 router.route("/:id").delete((req,res)=>{
     User.findByIdAndDelete(req.params.id)
     .then(()=> res.json("User Deleted!"))
     .catch(err => res.status(400).json("Error "+ err))
 })
 
+//function to update user data from database using id
 router.route('/update/:id').post((req, res) => {
     User.findById(req.params.id)
       .then(users => {
@@ -48,6 +52,9 @@ router.route('/update/:id').post((req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
+    /* This function is used to validate user data.
+    If user-data is present in database then it is searched and hence matched on the login page.
+    If the data is not present then user not found message is displayed*/
     router.route("/login").post((req,res)=>{
         console.log(req.body);
         User.find({email: req.body.email, password: req.body.password}, function (err, result) {

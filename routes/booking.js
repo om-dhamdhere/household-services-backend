@@ -7,6 +7,8 @@ router.route("/").get((req, res)=>{
         .catch(err=>res.status(400).json("Error: "+err));
 });
 
+
+//An API to create and insert all the data into database using key-value pairs
 router.route("/add").post((req, res)=>{
     const fname=req.body.fname;
     const lname=req.body.lname;
@@ -21,18 +23,21 @@ router.route("/add").post((req, res)=>{
         .catch(err => res.status(400).json("Error "+ err))
 });
 
+//function to fetch data with the help of id created
 router.route("/:id").get((req,res)=>{
     Booking.findById(req.params.id)
         .then(bookings=>res.json(bookings))
         .catch(err=>res.status(400).json("Error: "+ err));
 });
 
+//function to delete data with the help of id created
 router.route("/:id").delete((req,res)=>{
     Booking.findByIdAndDelete(req.params.id)
     .then(()=> res.json("Booking Removed!"))
     .catch(err => res.status(400).json("Error "+ err))
 })
 
+//function to update data with the help of id created
 router.route('/update/:id').post((req, res) => {
     Booking.findById(req.params.id)
       .then(bookings => {

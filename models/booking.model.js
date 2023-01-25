@@ -1,5 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
+
+//defining the database schema for booking model
 const bookingSchema=new mongoose.Schema({
         fname:{ type: String, required:true },
 

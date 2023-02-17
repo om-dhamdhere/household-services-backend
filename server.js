@@ -29,11 +29,13 @@ connection.once('open', ()=>{
 
 const userRouter=require("./routes/users");
 const bookRouter=require("./routes/booking");
+const codRouter=require("./routes/cod");
 
 
 app.use(`/`, indexRouter);
 app.use("/users", userRouter);
 app.use("/bookings", bookRouter);
+app.use("/cod",codRouter);
 
 //function to check whether server is running or not
 app.listen(port, ()=>{

@@ -11,7 +11,9 @@ const bookingSchema=new mongoose.Schema({
 
         date:{ type: Date, required:true },
 
-        service:{ type: Number, required:true },
+        enddate:{type: Date, required:true},
+
+        // service:{ type: Number, required:true },
     },{
         timestamps:true,
 });

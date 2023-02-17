@@ -14,9 +14,10 @@ router.route("/add").post((req, res)=>{
     const lname=req.body.lname;
     const email=req.body.email;
     const date=req.body.date;
+    const enddate=req.body.enddate;
     const service=req.body.service;
 
-    const newBooking=new Booking({ fname, lname, email, date, service });
+    const newBooking=new Booking({ fname, lname, email, date, enddate, service });
 
     newBooking.save()
         .then(()=> res.json("Booking Succesful!"))
@@ -45,7 +46,8 @@ router.route('/update/:id').post((req, res) => {
         bookings.lname = req.body.lname;
         bookings.email = req.body.email;
         bookings.date = req.body.date;
-        bookings.service=req.body.service;
+        bookings.enddate = req.body.enddate;
+       
   
         bookings.save()
           .then(() => res.json('Booking updated!'))
